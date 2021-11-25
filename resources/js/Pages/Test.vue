@@ -49,6 +49,10 @@
 
 <script>
 export default {
+    name:'Test',
+    props: {
+        senders:'',
+    }
 
 }
 </script>

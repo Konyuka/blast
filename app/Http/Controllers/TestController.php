@@ -4,20 +4,41 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Http;
+
 
 
 class TestController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
-        //  return Inertia::render('Landing', ['allProducts' => $data]);
-         return Inertia::render('Test');
+        //  $popularMovies = Http::withHeaders([
+        //     'X-First' => 'foo',
+        //     'X-Second' => 'bar'
+        //  ])->
+        //  get('https://api.themoviedb.org/3/movie/popular')
+        //  ->json()['results'];
+
+        //  $response = $client->get('https://api.example.com/api/AvailabilitySearch', [
+        //     'headers' => [
+        //         'Authorization' => 'Bearer YOUR_TOKEN_HERE',
+        //     ],
+        //     'form_params' => [
+        //         'VisitDate' => '2017-05-08',
+        //         'PartySize' => '2',
+        //         'ChannelCode' => 'ONLINE',
+        //     ],
+        // ]);
+
+
+        //  $response = Http::get('https://portal.zettatel.com/SMSApi/account/readprofile?userid=textduka&password=Ht7WGsX2&output=json');
+         $response = Http::get('https://portal.zettatel.com/SMSApi/account/readcredithistory?userid=textduka&password=Ht7WGsX2&fromdate=2021-11-25&todate=2021-11-25&output=json')
+                           ->json();
+        //  dd($response);
+         return Inertia::render('Test', [
+             'senders' => $response,
+         ]);
     }
 
     /**
