@@ -1,4 +1,4 @@
-require('./bootstrap');
+// require('./bootstrap');
 import Vue from 'vue'
 import { createInertiaApp } from '@inertiajs/inertia-vue'
 import { InertiaProgress } from '@inertiajs/progress'
