@@ -32,10 +32,8 @@ class TestController extends Controller
         // ]);
 
 
-        //  $response = Http::get('https://portal.zettatel.com/SMSApi/account/readprofile?userid=textduka&password=Ht7WGsX2&output=json');
-         $response = Http::get('https://portal.zettatel.com/SMSApi/account/readcredithistory?userid=textduka&password=Ht7WGsX2&fromdate=2021-11-25&todate=2021-11-25&output=json')
-                           ->json();
-        //  dd($response);
+         $response = Http::get('https://portal.zettatel.com/SMSApi/account/readprofile?userid=levzealot&password=Password2021&output=json')
+                     ->json();
          return Inertia::render('Test', [
              'senders' => $response,
          ]);
