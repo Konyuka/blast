@@ -3000,6 +3000,49 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
 
 /***/ }),
@@ -8798,7 +8841,125 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [_c("p", [_vm._v("Home Page")])])
+    return _c("div", { staticClass: "p-5" }, [
+      _c("form", { staticClass: "space-y-8 divide-y divide-gray-200" }, [
+        _c(
+          "div",
+          { staticClass: "space-y-8 divide-y divide-gray-200 sm:space-y-5" },
+          [
+            _c("div", [
+              _c(
+                "div",
+                { staticClass: "mt-6 sm:mt-5 space-y-6 sm:space-y-5" },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5",
+                    },
+                    [
+                      _c(
+                        "label",
+                        {
+                          staticClass:
+                            "block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2",
+                          attrs: { for: "username" },
+                        },
+                        [_vm._v("\n                Phone Number\n            ")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "mt-1 sm:mt-0 sm:col-span-2" }, [
+                        _c(
+                          "div",
+                          { staticClass: "max-w-lg flex rounded-md shadow-sm" },
+                          [
+                            _c(
+                              "span",
+                              {
+                                staticClass:
+                                  "inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 sm:text-sm",
+                              },
+                              [
+                                _vm._v(
+                                  "\n                    +254\n                "
+                                ),
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass:
+                                "flex-1 block w-full focus:ring-indigo-500 focus:border-indigo-500 min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300",
+                              attrs: {
+                                type: "text",
+                                name: "username",
+                                id: "username",
+                                autocomplete: "username",
+                              },
+                            }),
+                          ]
+                        ),
+                      ]),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5",
+                    },
+                    [
+                      _c(
+                        "label",
+                        {
+                          staticClass:
+                            "block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2",
+                          attrs: { for: "about" },
+                        },
+                        [_vm._v("\n                Text Message\n            ")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "mt-1 sm:mt-0 sm:col-span-2" }, [
+                        _c("textarea", {
+                          staticClass:
+                            "max-w-lg shadow-sm block w-full focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border border-gray-300 rounded-md",
+                          attrs: { id: "about", name: "about", rows: "3" },
+                        }),
+                      ]),
+                    ]
+                  ),
+                ]
+              ),
+            ]),
+          ]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "pt-5" }, [
+          _c("div", { staticClass: "flex justify-end" }, [
+            _c(
+              "button",
+              {
+                staticClass:
+                  "bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500",
+                attrs: { type: "button" },
+              },
+              [_vm._v("\n            Cancel\n        ")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass:
+                  "ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500",
+                attrs: { type: "submit" },
+              },
+              [_vm._v("\n            Save\n        ")]
+            ),
+          ]),
+        ]),
+      ]),
+    ])
   },
 ]
 render._withStripped = true
