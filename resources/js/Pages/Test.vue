@@ -48,6 +48,9 @@
 </template>
 
 <script>
+import axios from 'axios';
+
+
 export default {
     name:'Test',
     props: {
@@ -99,41 +102,18 @@ export default {
         },
         sendapp(){
 
-            // let payload = {
-            //     "userid": "levzealot",
-            //     "password" : "Password2021",
-            //     "senderid": "LEVZEALOT",
-            //     "msgType": "text",
-            //     "duplicatecheck": "true",
-            //     "sendMethod": "quick",
-            //     "sms": [
-            //         {
-            //         "mobile": [this.number],
-            //         "msg": this.message
-            //         },
-            //     ]
-            // }
+            // const axios = require('axios')
+            let encodedText = encodeURI('buda niaje bana')
 
-            this.$httpw
-            .post("/send?phone=+254716202298&text=me", {
-              headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json",
-                // "Access-Control-Allow-Origin: *"
-                // "Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}"
-                // "Authorization": `Bearer ${localStorage.getItem('token')}`
-              },
-            })
-            .then((response) => {
-              if (response) {
-                console.log(response)
-              }
-            })
-            .catch(error => {
-              console.log(error)
-            })
+            return axios.post("https://wa.me/254716202298/?text="+encodedText, {
+                        
+                    })
+                    .then(function (response) {
+                        console.log(response);
+                    })
 
-            // https://api.whatsapp.com/send?phone=${this.serviceNumber}&text=${encodeURIComponent(payload)}
+
+
         }
 
     }

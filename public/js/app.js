@@ -2994,6 +2994,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -3043,6 +3045,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'Test',
   props: {
@@ -3085,35 +3088,11 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     sendapp: function sendapp() {
-      // let payload = {
-      //     "userid": "levzealot",
-      //     "password" : "Password2021",
-      //     "senderid": "LEVZEALOT",
-      //     "msgType": "text",
-      //     "duplicatecheck": "true",
-      //     "sendMethod": "quick",
-      //     "sms": [
-      //         {
-      //         "mobile": [this.number],
-      //         "msg": this.message
-      //         },
-      //     ]
-      // }
-      this.$httpw.post("/send?phone=+254716202298&text=me", {
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json" // "Access-Control-Allow-Origin: *"
-          // "Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}"
-          // "Authorization": `Bearer ${localStorage.getItem('token')}`
-
-        }
-      }).then(function (response) {
-        if (response) {
-          console.log(response);
-        }
-      })["catch"](function (error) {
-        console.log(error);
-      }); // https://api.whatsapp.com/send?phone=${this.serviceNumber}&text=${encodeURIComponent(payload)}
+      // const axios = require('axios')
+      var encodedText = encodeURI('buda niaje bana');
+      return axios__WEBPACK_IMPORTED_MODULE_0___default().post("https://wa.me/254716202298/?text=" + encodedText, {}).then(function (response) {
+        console.log(response);
+      });
     }
   }
 });
@@ -3128,19 +3107,16 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 /* harmony import */ var _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-vue */ "./node_modules/@inertiajs/inertia-vue/dist/index.js");
 /* harmony import */ var _inertiajs_progress__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/progress */ "./node_modules/@inertiajs/progress/dist/index.js");
 /* harmony import */ var _axios_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/axios.js */ "./resources/js/axios.js");
-/* harmony import */ var _axiosw_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/axiosw.js */ "./resources/js/axiosw.js");
 // require('./bootstrap');
 
 
 
 
-
-vue__WEBPACK_IMPORTED_MODULE_4__["default"].prototype.$http = _axios_js__WEBPACK_IMPORTED_MODULE_2__["default"];
-vue__WEBPACK_IMPORTED_MODULE_4__["default"].prototype.$httpw = _axiosw_js__WEBPACK_IMPORTED_MODULE_3__["default"];
+vue__WEBPACK_IMPORTED_MODULE_3__["default"].prototype.$http = _axios_js__WEBPACK_IMPORTED_MODULE_2__["default"];
 _inertiajs_progress__WEBPACK_IMPORTED_MODULE_1__.InertiaProgress.init();
 (0,_inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__.createInertiaApp)({
   resolve: function resolve(name) {
@@ -3150,7 +3126,7 @@ _inertiajs_progress__WEBPACK_IMPORTED_MODULE_1__.InertiaProgress.init();
     var el = _ref.el,
         App = _ref.App,
         props = _ref.props;
-    new vue__WEBPACK_IMPORTED_MODULE_4__["default"]({
+    new vue__WEBPACK_IMPORTED_MODULE_3__["default"]({
       render: function render(h) {
         return h(App, props);
       }
@@ -3175,27 +3151,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
 (axios__WEBPACK_IMPORTED_MODULE_0___default().defaults.baseURL) = "https://portal.zettatel.com";
-(axios__WEBPACK_IMPORTED_MODULE_0___default().defaults.headers.common["Content-Type"]) = "application/json";
-(axios__WEBPACK_IMPORTED_MODULE_0___default().defaults.headers.common.Accept) = "application/json";
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((axios__WEBPACK_IMPORTED_MODULE_0___default()));
-
-/***/ }),
-
-/***/ "./resources/js/axiosw.js":
-/*!********************************!*\
-  !*** ./resources/js/axiosw.js ***!
-  \********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
-(axios__WEBPACK_IMPORTED_MODULE_0___default().defaults.baseURL) = "https://api.whatsapp.com";
 (axios__WEBPACK_IMPORTED_MODULE_0___default().defaults.headers.common["Content-Type"]) = "application/json";
 (axios__WEBPACK_IMPORTED_MODULE_0___default().defaults.headers.common.Accept) = "application/json";
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((axios__WEBPACK_IMPORTED_MODULE_0___default()));
