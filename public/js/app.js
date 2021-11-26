@@ -3047,6 +3047,74 @@ __webpack_require__.r(__webpack_exports__);
   name: 'Test',
   props: {
     senders: ''
+  },
+  data: function data() {
+    return {
+      number: '',
+      message: ''
+    };
+  },
+  methods: {
+    sendtext: function sendtext() {
+      var payload = {
+        "userid": "levzealot",
+        "password": "Password2021",
+        "senderid": "LEVZEALOT",
+        "msgType": "text",
+        "duplicatecheck": "true",
+        "sendMethod": "quick",
+        "sms": [{
+          "mobile": [this.number],
+          "msg": this.message
+        }]
+      };
+      this.$http.post("/SMSApi/send ", payload, {
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json" // "Access-Control-Allow-Origin: *"
+          // "Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}"
+          // "Authorization": `Bearer ${localStorage.getItem('token')}`
+
+        }
+      }).then(function (response) {
+        if (response) {
+          console.log(response);
+        }
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    sendapp: function sendapp() {
+      // let payload = {
+      //     "userid": "levzealot",
+      //     "password" : "Password2021",
+      //     "senderid": "LEVZEALOT",
+      //     "msgType": "text",
+      //     "duplicatecheck": "true",
+      //     "sendMethod": "quick",
+      //     "sms": [
+      //         {
+      //         "mobile": [this.number],
+      //         "msg": this.message
+      //         },
+      //     ]
+      // }
+      this.$httpw.post("/send?phone=+254716202298&text=me", {
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json" // "Access-Control-Allow-Origin: *"
+          // "Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}"
+          // "Authorization": `Bearer ${localStorage.getItem('token')}`
+
+        }
+      }).then(function (response) {
+        if (response) {
+          console.log(response);
+        }
+      })["catch"](function (error) {
+        console.log(error);
+      }); // https://api.whatsapp.com/send?phone=${this.serviceNumber}&text=${encodeURIComponent(payload)}
+    }
   }
 });
 
@@ -3060,13 +3128,19 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 /* harmony import */ var _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-vue */ "./node_modules/@inertiajs/inertia-vue/dist/index.js");
 /* harmony import */ var _inertiajs_progress__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/progress */ "./node_modules/@inertiajs/progress/dist/index.js");
+/* harmony import */ var _axios_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/axios.js */ "./resources/js/axios.js");
+/* harmony import */ var _axiosw_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/axiosw.js */ "./resources/js/axiosw.js");
 // require('./bootstrap');
 
 
 
+
+
+vue__WEBPACK_IMPORTED_MODULE_4__["default"].prototype.$http = _axios_js__WEBPACK_IMPORTED_MODULE_2__["default"];
+vue__WEBPACK_IMPORTED_MODULE_4__["default"].prototype.$httpw = _axiosw_js__WEBPACK_IMPORTED_MODULE_3__["default"];
 _inertiajs_progress__WEBPACK_IMPORTED_MODULE_1__.InertiaProgress.init();
 (0,_inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__.createInertiaApp)({
   resolve: function resolve(name) {
@@ -3076,13 +3150,55 @@ _inertiajs_progress__WEBPACK_IMPORTED_MODULE_1__.InertiaProgress.init();
     var el = _ref.el,
         App = _ref.App,
         props = _ref.props;
-    new vue__WEBPACK_IMPORTED_MODULE_2__["default"]({
+    new vue__WEBPACK_IMPORTED_MODULE_4__["default"]({
       render: function render(h) {
         return h(App, props);
       }
     }).$mount(el);
   }
 });
+
+/***/ }),
+
+/***/ "./resources/js/axios.js":
+/*!*******************************!*\
+  !*** ./resources/js/axios.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+(axios__WEBPACK_IMPORTED_MODULE_0___default().defaults.baseURL) = "https://portal.zettatel.com";
+(axios__WEBPACK_IMPORTED_MODULE_0___default().defaults.headers.common["Content-Type"]) = "application/json";
+(axios__WEBPACK_IMPORTED_MODULE_0___default().defaults.headers.common.Accept) = "application/json";
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((axios__WEBPACK_IMPORTED_MODULE_0___default()));
+
+/***/ }),
+
+/***/ "./resources/js/axiosw.js":
+/*!********************************!*\
+  !*** ./resources/js/axiosw.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+(axios__WEBPACK_IMPORTED_MODULE_0___default().defaults.baseURL) = "https://api.whatsapp.com";
+(axios__WEBPACK_IMPORTED_MODULE_0___default().defaults.headers.common["Content-Type"]) = "application/json";
+(axios__WEBPACK_IMPORTED_MODULE_0___default().defaults.headers.common.Accept) = "application/json";
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((axios__WEBPACK_IMPORTED_MODULE_0___default()));
 
 /***/ }),
 
@@ -8839,134 +8955,169 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "p-5" }, [
-      _c("form", { staticClass: "space-y-8 divide-y divide-gray-200" }, [
-        _c(
-          "div",
-          { staticClass: "space-y-8 divide-y divide-gray-200 sm:space-y-5" },
-          [
-            _c("div", [
+  return _c("div", { staticClass: "p-5" }, [
+    _c("form", { staticClass: "space-y-8 divide-y divide-gray-200" }, [
+      _c(
+        "div",
+        { staticClass: "space-y-8 divide-y divide-gray-200 sm:space-y-5" },
+        [
+          _c("div", [
+            _c("div", { staticClass: "mt-6 sm:mt-5 space-y-6 sm:space-y-5" }, [
               _c(
                 "div",
-                { staticClass: "mt-6 sm:mt-5 space-y-6 sm:space-y-5" },
+                {
+                  staticClass:
+                    "sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5",
+                },
                 [
                   _c(
-                    "div",
+                    "label",
                     {
                       staticClass:
-                        "sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5",
+                        "block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2",
+                      attrs: { for: "username" },
                     },
-                    [
-                      _c(
-                        "label",
-                        {
-                          staticClass:
-                            "block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2",
-                          attrs: { for: "username" },
-                        },
-                        [_vm._v("\n                Phone Number\n            ")]
-                      ),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "mt-1 sm:mt-0 sm:col-span-2" }, [
-                        _c(
-                          "div",
-                          { staticClass: "max-w-lg flex rounded-md shadow-sm" },
-                          [
-                            _c(
-                              "span",
-                              {
-                                staticClass:
-                                  "inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 sm:text-sm",
-                              },
-                              [
-                                _vm._v(
-                                  "\n                    +254\n                "
-                                ),
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c("input", {
-                              staticClass:
-                                "flex-1 block w-full focus:ring-indigo-500 focus:border-indigo-500 min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300",
-                              attrs: {
-                                type: "text",
-                                name: "username",
-                                id: "username",
-                                autocomplete: "username",
-                              },
-                            }),
-                          ]
-                        ),
-                      ]),
-                    ]
+                    [_vm._v("\n                Phone Number\n            ")]
                   ),
                   _vm._v(" "),
+                  _c("div", { staticClass: "mt-1 sm:mt-0 sm:col-span-2" }, [
+                    _c(
+                      "div",
+                      { staticClass: "max-w-lg flex rounded-md shadow-sm" },
+                      [
+                        _c(
+                          "span",
+                          {
+                            staticClass:
+                              "inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 sm:text-sm",
+                          },
+                          [
+                            _vm._v(
+                              "\n                    +254\n                "
+                            ),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.number,
+                              expression: "number",
+                            },
+                          ],
+                          staticClass:
+                            "flex-1 block w-full focus:ring-indigo-500 focus:border-indigo-500 min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300",
+                          attrs: {
+                            type: "text",
+                            name: "username",
+                            id: "username",
+                            autocomplete: "username",
+                          },
+                          domProps: { value: _vm.number },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.number = $event.target.value
+                            },
+                          },
+                        }),
+                      ]
+                    ),
+                  ]),
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5",
+                },
+                [
                   _c(
-                    "div",
+                    "label",
                     {
                       staticClass:
-                        "sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5",
+                        "block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2",
+                      attrs: { for: "about" },
                     },
-                    [
-                      _c(
-                        "label",
-                        {
-                          staticClass:
-                            "block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2",
-                          attrs: { for: "about" },
-                        },
-                        [_vm._v("\n                Text Message\n            ")]
-                      ),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "mt-1 sm:mt-0 sm:col-span-2" }, [
-                        _c("textarea", {
-                          staticClass:
-                            "max-w-lg shadow-sm block w-full focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border border-gray-300 rounded-md",
-                          attrs: { id: "about", name: "about", rows: "3" },
-                        }),
-                      ]),
-                    ]
+                    [_vm._v("\n                Text Message\n            ")]
                   ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "mt-1 sm:mt-0 sm:col-span-2" }, [
+                    _c("textarea", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.message,
+                          expression: "message",
+                        },
+                      ],
+                      staticClass:
+                        "max-w-lg shadow-sm block w-full focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border border-gray-300 rounded-md",
+                      attrs: { id: "about", name: "about", rows: "3" },
+                      domProps: { value: _vm.message },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.message = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
                 ]
               ),
             ]),
-          ]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "pt-5" }, [
-          _c("div", { staticClass: "flex justify-end" }, [
-            _c(
-              "button",
-              {
-                staticClass:
-                  "bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500",
-                attrs: { type: "button" },
-              },
-              [_vm._v("\n            Cancel\n        ")]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass:
-                  "ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500",
-                attrs: { type: "submit" },
-              },
-              [_vm._v("\n            Save\n        ")]
-            ),
           ]),
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "pt-5" }, [
+        _c("div", { staticClass: "flex justify-end" }, [
+          _c(
+            "button",
+            {
+              staticClass:
+                "ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500",
+              attrs: { type: "submit" },
+              on: {
+                click: function ($event) {
+                  $event.preventDefault()
+                  return _vm.sendtext.apply(null, arguments)
+                },
+              },
+            },
+            [_vm._v("\n            Send Text\n        ")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass:
+                "ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500",
+              attrs: { type: "submit" },
+              on: {
+                click: function ($event) {
+                  $event.preventDefault()
+                  return _vm.sendapp.apply(null, arguments)
+                },
+              },
+            },
+            [_vm._v("\n            Send Whatsapp\n        ")]
+          ),
         ]),
       ]),
-    ])
-  },
-]
+    ]),
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -21246,6 +21397,18 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 				}
 /******/ 			}
 /******/ 			return result;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
 /******/ 		};
 /******/ 	})();
 /******/ 	
