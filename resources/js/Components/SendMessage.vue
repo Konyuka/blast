@@ -9,7 +9,7 @@
                 <div class="lg:grid lg:grid-cols-6 lg:gap-x-5">
                 
                 <div class="space-y-6 sm:px-6 lg:px-0 lg:col-span-9">
-                    <form action="#" method="POST">
+                    <form action="#">
                     <div class="shadow sm:rounded-md sm:overflow-hidden">
                         <div class="bg-white py-6 px-4 space-y-6 sm:p-6">
 
@@ -35,7 +35,7 @@
                                 Phone Numbers
                             </label>
                             <div class="mt-1">
-                                <textarea id="about" name="about" rows="4" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="2547XXXXXXXX, 2547XXXXXXXX, 2547XXXXXXXX"></textarea>
+                                <textarea v-model="phoneNumber" id="about" name="about" rows="4" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="2547XXXXXXXX, 2547XXXXXXXX, 2547XXXXXXXX"></textarea>
                             </div>
 
                             <div class="flex justify-between">
@@ -86,7 +86,7 @@
                                 Text Message
                             </label>
                             <div class="mt-1">
-                                <textarea id="about" name="about" rows="6" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="Dear Client, This a kind reminder to...."></textarea>
+                                <textarea v-model="textMessage" id="about" name="about" rows="6" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="Dear Client, This a kind reminder to...."></textarea>
                             </div>
                             <p class="mt-2 text-sm text-gray-500">
                                 <span class="text-red-600">365</span> Characters left for one unit of text
@@ -105,7 +105,7 @@
                         </div>
                         </div>
                         <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                        <button type="submit" class="bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        <button @click.prevent="sendText" type="submit" class="bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                             Blast
                         </button>
                         </div>
@@ -121,7 +121,8 @@
 </template>
 
 <script>
-    import { defineComponent } from 'vue'
+    import { defineComponent, onMounted, onUpdated, onUnmounted, computed, watch, reactive, ref } from 'vue'
+
     // import KaribuLayout from '@/Layouts/KaribuLayout.vue'
     // import sendMessage from '@/Components/Send.vue'
 
@@ -130,5 +131,57 @@
             // KaribuLayout,
             // sendMessage,
         },
+        name:'SendMessage',
+        setup() {
+
+            let phoneNumber = ref('')
+            let textMessage = ref('')
+
+            const sendText = () => {
+
+                let payload = {
+                "userid": "levzealot",
+                "password" : "Password2021",
+                "senderid": "LEVZEALOT",
+                "msgType": "text",
+                "duplicatecheck": "true",
+                "sendMethod": "quick",
+                "sms": [
+                    {
+                    "mobile": [phoneNumber.value],
+                    "msg": textMessage.value
+                    },
+                    ]
+                }
+
+                // return console.log(payload);
+
+                this.$http
+                .post("/SMSApi/send ", payload, {
+                    headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                    // "Access-Control-Allow-Origin: *"
+                    // "Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}"
+                    // "Authorization": `Bearer ${localStorage.getItem('token')}`
+                    },
+                })
+                .then((response) => {
+                    if (response) {
+                    console.log(response)
+                    }
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+            }
+
+            return{
+                phoneNumber, 
+                textMessage,
+                sendText,
+            }
+            
+        }
     })
 </script>
