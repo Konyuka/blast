@@ -7,9 +7,9 @@
             <div class="p-4">
 
                 <div class="lg:grid lg:grid-cols-6 lg:gap-x-5">
-                
+
                 <div class="space-y-6 sm:px-6 lg:px-0 lg:col-span-9">
-                    <form action="#">
+                    <div>
                     <div class="shadow sm:rounded-md sm:overflow-hidden">
                         <div class="bg-white py-6 px-4 space-y-6 sm:p-6">
 
@@ -35,7 +35,7 @@
                                 Phone Numbers
                             </label>
                             <div class="mt-1">
-                                <textarea v-model="phoneNumber" id="about" name="about" rows="4" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="2547XXXXXXXX, 2547XXXXXXXX, 2547XXXXXXXX"></textarea>
+                                <textarea v-model="mobile" id="about" name="about" rows="4" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="2547XXXXXXXX, 2547XXXXXXXX, 2547XXXXXXXX"></textarea>
                             </div>
 
                             <div class="flex justify-between">
@@ -76,7 +76,7 @@
                             <div class="flex justify-between">
                                 <div></div>
                                 <a href="" class="mt-2 text-sm text-indigo-600">
-                                    Download the Excel Template 
+                                    Download the Excel Template
                                 </a>
                             </div>
                             </div>
@@ -86,7 +86,7 @@
                                 Text Message
                             </label>
                             <div class="mt-1">
-                                <textarea v-model="textMessage" id="about" name="about" rows="6" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="Dear Client, This a kind reminder to...."></textarea>
+                                <textarea v-model="msg" id="about" name="about" rows="6" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="Dear Client, This a kind reminder to...."></textarea>
                             </div>
                             <p class="mt-2 text-sm text-gray-500">
                                 <span class="text-red-600">365</span> Characters left for one unit of text
@@ -101,16 +101,16 @@
                                 <label for="comments" class="font-medium text-gray-700">Send WhatsApp</label>
                                 </div>
                             </div>
-                            
+
                         </div>
                         </div>
                         <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                        <button @click.prevent="sendText" type="submit" class="bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        <button @click="sendLaravel"  class="bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                             Blast
                         </button>
                         </div>
                     </div>
-                    </form>
+                    </div>
 
                 </div>
                 </div>
@@ -122,6 +122,10 @@
 
 <script>
     import { defineComponent, onMounted, onUpdated, onUnmounted, computed, watch, reactive, ref } from 'vue'
+    import { useForm } from "@inertiajs/inertia-vue3";
+    import { Head } from "@inertiajs/inertia-vue3";
+
+
 
     // import KaribuLayout from '@/Layouts/KaribuLayout.vue'
     // import sendMessage from '@/Components/Send.vue'
@@ -134,8 +138,18 @@
         name:'SendMessage',
         setup() {
 
-            let phoneNumber = ref('')
-            let textMessage = ref('')
+            let mobile = ref('')
+            let msg = ref('')
+
+            let form = useForm({
+                mobile: mobile.value,
+                msg: msg.value,
+            });
+
+            const sendLaravel = () => {
+                form.post(route("sending"));
+                // alert('ok')
+            }
 
             const sendText = () => {
 
@@ -153,6 +167,8 @@
                     },
                     ]
                 }
+
+
 
                 // return console.log(payload);
 
@@ -177,11 +193,13 @@
             }
 
             return{
-                phoneNumber, 
-                textMessage,
+                mobile,
+                msg,
                 sendText,
+                sendLaravel,
+                form
             }
-            
+
         }
     })
 </script>

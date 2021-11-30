@@ -1284,9 +1284,6 @@ select {
 .h-20 {
 	height: 5rem;
 }
-.h-screen {
-	height: 100vh;
-}
 .h-full {
 	height: 100%;
 }
@@ -1449,9 +1446,6 @@ select {
 .grid-cols-1 {
 	grid-template-columns: repeat(1, minmax(0, 1fr));
 }
-.grid-cols-3 {
-	grid-template-columns: repeat(3, minmax(0, 1fr));
-}
 .flex-col {
 	flex-direction: column;
 }
@@ -1501,11 +1495,6 @@ select {
 	--tw-space-y-reverse: 0;
 	margin-top: calc(2rem * calc(1 - var(--tw-space-y-reverse)));
 	margin-bottom: calc(2rem * var(--tw-space-y-reverse));
-}
-.space-y-4 > :not([hidden]) ~ :not([hidden]) {
-	--tw-space-y-reverse: 0;
-	margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
-	margin-bottom: calc(1rem * var(--tw-space-y-reverse));
 }
 .divide-y > :not([hidden]) ~ :not([hidden]) {
 	--tw-divide-y-reverse: 0;
@@ -1566,9 +1555,6 @@ select {
 }
 .border-2 {
 	border-width: 2px;
-}
-.border-4 {
-	border-width: 4px;
 }
 .border-b-2 {
 	border-bottom-width: 2px;
@@ -1812,9 +1798,6 @@ select {
 .pb-16 {
 	padding-bottom: 4rem;
 }
-.pb-6 {
-	padding-bottom: 1.5rem;
-}
 .text-left {
 	text-align: left;
 }
@@ -1881,9 +1864,6 @@ select {
 }
 .leading-4 {
 	line-height: 1rem;
-}
-.leading-6 {
-	line-height: 1.5rem;
 }
 .tracking-widest {
 	letter-spacing: 0.1em;
@@ -2253,17 +2233,13 @@ select {
 	--tw-ring-opacity: 1;
 	--tw-ring-color: rgba(191, 219, 254, var(--tw-ring-opacity));
 }
-.focus\:ring-white:focus {
-	--tw-ring-opacity: 1;
-	--tw-ring-color: rgba(255, 255, 255, var(--tw-ring-opacity));
-}
 .focus\:ring-indigo-500:focus {
 	--tw-ring-opacity: 1;
 	--tw-ring-color: rgba(99, 102, 241, var(--tw-ring-opacity));
 }
-.focus\:ring-indigo-600:focus {
+.focus\:ring-white:focus {
 	--tw-ring-opacity: 1;
-	--tw-ring-color: rgba(79, 70, 229, var(--tw-ring-opacity));
+	--tw-ring-color: rgba(255, 255, 255, var(--tw-ring-opacity));
 }
 .focus\:ring-opacity-50:focus {
 	--tw-ring-opacity: 0.5;
@@ -2321,16 +2297,12 @@ select {
 		grid-column: span 4 / span 4;
 	}
 
-	.sm\:col-span-2 {
-		grid-column: span 2 / span 2;
-	}
-
-	.sm\:col-span-3 {
-		grid-column: span 3 / span 3;
-	}
-
 	.sm\:col-span-6 {
 		grid-column: span 6 / span 6;
+	}
+
+	.sm\:col-span-2 {
+		grid-column: span 2 / span 2;
 	}
 
 	.sm\:mx-0 {
@@ -2768,10 +2740,6 @@ select {
 	.lg\:-translate-x-1\/2 {
 		--tw-translate-x: -50%;
 		transform: var(--tw-transform);
-	}
-
-	.lg\:grid-cols-12 {
-		grid-template-columns: repeat(12, minmax(0, 1fr));
 	}
 
 	.lg\:grid-cols-6 {

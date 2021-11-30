@@ -4,6 +4,9 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+use App\Http\Controllers\SendingController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,3 +34,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/karibu', function () {
     return Inertia::render('Karibu');
 })->name('karibu');
+
+Route::middleware(['auth:sanctum', 'verified'])->post('/sending', [SendingController::class, 'index'])
+    ->name('sending');

@@ -63,58 +63,58 @@ export default {
         }
     },
     methods: {
-        sendtext(){
+        // sendtext(){
 
-            let payload = {
-                "userid": "levzealot",
-                "password" : "Password2021",
-                "senderid": "LEVZEALOT",
-                "msgType": "text",
-                "duplicatecheck": "true",
-                "sendMethod": "quick",
-                "sms": [
-                    {
-                    "mobile": [this.number],
-                    "msg": this.message
-                    },
-                ]
-            }
+            // let payload = {
+            //     "userid": "levzealot",
+            //     "password" : "Password2021",
+            //     "senderid": "LEVZEALOT",
+            //     "msgType": "text",
+            //     "duplicatecheck": "true",
+            //     "sendMethod": "quick",
+            //     "sms": [
+            //         {
+            //         "mobile": [this.number],
+            //         "msg": this.message
+            //         },
+            //     ]
+            // }
 
-            this.$http
-            .post("/SMSApi/send ", payload, {
-              headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json",
-                // "Access-Control-Allow-Origin: *"
-                // "Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}"
-                // "Authorization": `Bearer ${localStorage.getItem('token')}`
-              },
-            })
-            .then((response) => {
-              if (response) {
-                console.log(response)
-              }
-            })
-            .catch(error => {
-              console.log(error)
-            })
+        //     this.$http
+        //     .post("/SMSApi/send ", payload, {
+        //       headers: {
+        //         "Content-Type": "application/json",
+        //         "Accept": "application/json",
+        //         // "Access-Control-Allow-Origin: *"
+        //         // "Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}"
+        //         // "Authorization": `Bearer ${localStorage.getItem('token')}`
+        //       },
+        //     })
+        //     .then((response) => {
+        //       if (response) {
+        //         console.log(response)
+        //       }
+        //     })
+        //     .catch(error => {
+        //       console.log(error)
+        //     })
 
-        },
-        sendapp(){
+        // },
+        // sendapp(){
 
-            // const axios = require('axios')
-            let encodedText = encodeURI('buda niaje bana')
+        //     // const axios = require('axios')
+        //     let encodedText = encodeURI('buda niaje bana')
 
-            return axios.post("https://wa.me/254716202298/?text="+encodedText, {
-                        
-                    })
-                    .then(function (response) {
-                        console.log(response);
-                    })
+        //     return axios.post("https://wa.me/254716202298/?text="+encodedText, {
+
+        //             })
+        //             .then(function (response) {
+        //                 console.log(response);
+        //             })
 
 
 
-        }
+        // }
 
     }
 
