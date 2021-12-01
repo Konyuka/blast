@@ -23,5 +23,13 @@
             KaribuLayout,
             SendMessage,
         },
+        // props: ['response'],
+        props: {
+            textID: String,
+            check: Object,
+        },
+        setup(props) {
+            console.log(props)
+        }
     })
 </script>

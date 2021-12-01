@@ -8,6 +8,10 @@ import { InertiaProgress } from '@inertiajs/progress';
 // createApp.config.globalProperties.$http = axios;
 
 // Vue.prototype.$http = axios;
+const Vue = window.vue;
+// Vue.http.headers.common['Access-Control-Allow-Origin'] = true,
+// Vue.http.headers.common['Access-Control-Allow-Origin'] = '*'
+// Vue.http.headers.common['Access-Control-Request-Method'] = '*';
 
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Talk Duka';
 
@@ -15,6 +19,7 @@ createInertiaApp({
     title: (title) => `${title} - ${appName}`,
     resolve: (name) => require(`./Pages/${name}.vue`),
     setup({ el, app, props, plugin }) {
+        // console.log(this.http);
         return createApp({ render: () => h(app, props) })
             .use(plugin)
             .mixin({ methods: { route } })

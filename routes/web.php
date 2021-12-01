@@ -37,3 +37,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/karibu', function () {
 
 Route::middleware(['auth:sanctum', 'verified'])->post('/sending', [SendingController::class, 'index'])
     ->name('sending');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/check', [SendingController::class, 'checkUnits'])
+    ->name('check');

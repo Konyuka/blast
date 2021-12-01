@@ -35,7 +35,7 @@
                                 Phone Numbers
                             </label>
                             <div class="mt-1">
-                                <textarea v-model="mobile" id="about" name="about" rows="4" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="2547XXXXXXXX, 2547XXXXXXXX, 2547XXXXXXXX"></textarea>
+                                <textarea v-model="form.mobile" id="about" name="about" rows="4" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="2547XXXXXXXX, 2547XXXXXXXX, 2547XXXXXXXX"></textarea>
                             </div>
 
                             <div class="flex justify-between">
@@ -86,10 +86,11 @@
                                 Text Message
                             </label>
                             <div class="mt-1">
-                                <textarea v-model="msg" id="about" name="about" rows="6" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="Dear Client, This a kind reminder to...."></textarea>
+                                <textarea v-model="form.msg" @input.prevent="checkCharacters" id="about" name="about" rows="6" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="Dear Client, This a kind reminder to...."></textarea>
                             </div>
-                            <p class="mt-2 text-sm text-gray-500">
-                                <span class="text-red-600">365</span> Characters left for one unit of text
+                            <p v-if="characters.remaining.length != 0" class="mt-2 text-sm text-gray-500 flex justify-between">
+                                <span><span class="text-red-600">{{characters.remaining}}</span> Characters left for one unit of text</span>
+                                <span>Message cost <span class="text-red-600">{{characters.units}} unit(s)</span></span>
                             </p>
                             </div>
 
@@ -105,9 +106,12 @@
                         </div>
                         </div>
                         <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                        <button @click="sendLaravel"  class="bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        <Link :href="route('check')" class="bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                             Blast
-                        </button>
+                        </Link>
+                        <!-- <button @click.prevent="sendLaravel"  class="bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            Blast
+                        </button> -->
                         </div>
                     </div>
                     </div>
@@ -123,7 +127,10 @@
 <script>
     import { defineComponent, onMounted, onUpdated, onUnmounted, computed, watch, reactive, ref } from 'vue'
     import { useForm } from "@inertiajs/inertia-vue3";
-    import { Head } from "@inertiajs/inertia-vue3";
+    import { Head, Link } from "@inertiajs/inertia-vue3";
+    import axios from 'axios';
+    import VueResource from 'vue-resource';
+
 
 
 
@@ -134,21 +141,42 @@
         components: {
             // KaribuLayout,
             // sendMessage,
+            Head,
+            Link
         },
         name:'SendMessage',
         setup() {
 
-            let mobile = ref('')
-            let msg = ref('')
+            let characters = ref({units:'', remaining:''})
 
             let form = useForm({
-                mobile: mobile.value,
-                msg: msg.value,
+                mobile: '254716202298',
+                msg: '',
             });
 
+            const checkCharacters = () => {
+
+                let encodedText = form.msg.replace(/\s/g, '+')
+                const url = "https://portal.zettatel.com/SMSApi/info/msg?userid=levzealot&password=Password2021&msg="+encodedText+"&output=json"
+                axios.get(url)
+                .then(response => {
+                    characters.value.units = response.data.response.msgList.credit
+                    characters.value.remaining = response.data.response.msgList.remaining
+                    // remainingCharacters.value = response.data.response.msgList.remaining
+                    console.log(characters.value);
+                });
+
+
+
+               // get(route("check"))
+                // alert('hi')
+            }
+
             const sendLaravel = () => {
-                form.post(route("sending"));
-                // alert('ok')
+
+                form.post(route("sending"))
+
+
             }
 
             const sendText = () => {
@@ -162,21 +190,25 @@
                 "sendMethod": "quick",
                 "sms": [
                     {
-                    "mobile": [phoneNumber.value],
-                    "msg": textMessage.value
+                    "mobile": ['254716202298'],
+                    "msg": 'something'
                     },
                     ]
                 }
 
-
-
-                // return console.log(payload);
-
                 this.$http
-                .post("/SMSApi/send ", payload, {
+                .post("https://portal.zettatel.com/SMSApi/send", payload, {
                     headers: {
                     "Content-Type": "application/json",
                     "Accept": "application/json",
+                    "Access-Control-Allow-Origin": "https://portal.zettatel.com",
+                    // 'Access-Control-Allow-Origin':'https://portal.zettatel.com',
+                    'Access-Control-Allow-Origin':true,
+                    'Access-Control-Allow-Origin':'*',
+                    "X-Requested-With": "XMLHttpRequest"
+
+                    // 'Access-Control-Allow-Origin':'http://localhost:8000',
+                    // 'Access-Control-Request-Method':'*',
                     // "Access-Control-Allow-Origin: *"
                     // "Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}"
                     // "Authorization": `Bearer ${localStorage.getItem('token')}`
@@ -192,12 +224,38 @@
                 })
             }
 
+            // const sendLaravel  = async () => {
+            //     let payload = {
+            //     "userid": "levzealot",
+            //     "password" : "Password2021",
+            //     "senderid": "LEVZEALOT",
+            //     "msgType": "text",
+            //     "duplicatecheck": "true",
+            //     "sendMethod": "quick",
+            //     "sms": [
+            //         {
+            //         "mobile": ['254716202298'],
+            //         "msg": 'something'
+            //         },
+            //         ]
+            //     }
+            //     await fetch('https://portal.zettatel.com/SMSApi/send', {
+            //         method: "POST",
+            //         headers: {
+            //             "Content-Type": "application/json",
+            //             "Accept": "application/json",
+            //             'Access-Control-Allow-Origin': 'http://localhost:8000/karibu'
+            //         },
+            //         body: JSON.stringify(payload)
+            //     })
+            // }
+
             return{
-                mobile,
-                msg,
+                characters,
                 sendText,
                 sendLaravel,
-                form
+                form,
+                checkCharacters
             }
 
         }
