@@ -25,8 +25,8 @@
 
                             <div class="col-span-6 sm:col-span-6 lg:col-span-2">
                             <label for="country" class="block text-sm font-medium text-gray-700">Select Sender ID</label>
-                            <select id="country" name="country" autocomplete="country-name" class="mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                <option>Collect Plus</option>
+                            <select v-for="(item, index) in senderids" :key="index" id="country" name="country" autocomplete="country-name" class="mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <option>{{ item.senderName }}</option>
                             </select>
                             </div>
 
@@ -106,12 +106,15 @@
                         </div>
                         </div>
                         <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                        <Link :href="route('check')" class="bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        <!-- <Link :href="route('check')" class="bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                             Blast
-                        </Link>
-                        <!-- <button @click.prevent="sendLaravel"  class="bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        </Link> -->
+                        <button @click.prevent="sendLaravel"  class="bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                             Blast
-                        </button> -->
+                        </button>
+                        <button @click.prevent="sendWhatsapp"  class="bg-indigo-600 ml-2 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            WhatsApp
+                        </button>
                         </div>
                     </div>
                     </div>
@@ -148,11 +151,29 @@
         setup() {
 
             let characters = ref({units:'', remaining:''})
-
+            let senderids = reactive([])
             let form = useForm({
                 mobile: '254716202298',
                 msg: '',
             });
+
+            onMounted(()=>{
+                let senderidurl = "https://portal.zettatel.com/SMSApi/senderid/read?userid=levzealot&password=Password2021&output=json"
+                axios.get(senderidurl)
+                .then(response => {
+                    // console.log(response.data.response.senderidList);
+                    let senderidsData = response.data.response.senderidList
+                    // return console.log(senderidsData)
+                    senderidsData.forEach(element => {
+                        // console.log(element.senderid)
+                        senderids.push(element.senderid)
+                        console.log(senderids)
+                    });
+                    // console.log(senderids)
+                });
+
+
+            })
 
             const checkCharacters = () => {
 
@@ -175,6 +196,14 @@
             const sendLaravel = () => {
 
                 form.post(route("sending"))
+
+
+            }
+
+            const sendWhatsapp = () => {
+                alert('hi')
+
+                // form.post(route("sending"))
 
 
             }
@@ -255,7 +284,9 @@
                 sendText,
                 sendLaravel,
                 form,
-                checkCharacters
+                checkCharacters,
+                sendWhatsapp,
+                senderids
             }
 
         }
