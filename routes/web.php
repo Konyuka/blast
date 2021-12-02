@@ -40,3 +40,5 @@ Route::middleware(['auth:sanctum', 'verified'])->post('/sending', [SendingContro
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/check', [SendingController::class, 'checkUnits'])
     ->name('check');
+// Route::middleware(['auth:sanctum', 'verified'])->get('/check', [SendingController::class, 'checkUnits'])
+//     ->name('check');

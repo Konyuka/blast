@@ -1,0 +1,13 @@
+
+> watch
+> mix watch "C:\\xampp\\htdocs\\Blast\\blast" "commit"
+
+i Compiling Mix
+√ Mix: Compiled with some errors in 676.45ms
+[1m[31mERROR[39m[22m in [1m[32mmain[39m[22m
+[1mModule [1m[31mnot found[39m[22m[1m: [1m[31mError[39m[22m[1m: Can't resolve 'C:\\xampp\\htdocs\\Blast\\blast' in 'C:\xampp\htdocs\Blast\blast'[39m[22m
+
+[1m[31mERROR[39m[22m in [1m[32mmain[39m[22m
+[1mModule [1m[31mnot found[39m[22m[1m: [1m[31mError[39m[22m[1m: Can't resolve 'commit' in 'C:\xampp\htdocs\Blast\blast'[39m[22m
+
+webpack compiled with [1m[31m2 errors[39m[22m

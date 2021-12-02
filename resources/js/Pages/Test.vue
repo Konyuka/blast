@@ -66,18 +66,18 @@ export default {
         // sendtext(){
 
             // let payload = {
-            //     "userid": "levzealot",
-            //     "password" : "Password2021",
-            //     "senderid": "LEVZEALOT",
-            //     "msgType": "text",
-            //     "duplicatecheck": "true",
-            //     "sendMethod": "quick",
-            //     "sms": [
-            //         {
-            //         "mobile": [this.number],
-            //         "msg": this.message
-            //         },
-            //     ]
+                // "userid": "levzealot",
+                // "password" : "Password2021",
+                // "senderid": "LEVZEALOT",
+                // "msgType": "text",
+                // "duplicatecheck": "true",
+                // "sendMethod": "quick",
+                // "sms": [
+                //     {
+                //     "mobile": [this.number],
+                //     "msg": this.message
+                //     },
+                // ]
             // }
 
         //     this.$http

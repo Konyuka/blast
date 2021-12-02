@@ -19,14 +19,15 @@
                             <label for="country" class="block text-sm font-medium text-gray-700">Choose Platform</label>
                             <select id="country" name="country" autocomplete="country-name" class="mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 <option>SMS</option>
+                                <option>Email</option>
                                 <option>Whatsapp</option>
                             </select>
                             </div>
 
                             <div class="col-span-6 sm:col-span-6 lg:col-span-2">
                             <label for="country" class="block text-sm font-medium text-gray-700">Select Sender ID</label>
-                            <select v-for="(item, index) in senderids" :key="index" id="country" name="country" autocomplete="country-name" class="mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                <option>{{ item.senderName }}</option>
+                            <select v-model="form.senderid" id="country" name="country" autocomplete="country-name" class="mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <option v-for="item in senderids" :key="item.sId">{{ item.senderName }}</option>
                             </select>
                             </div>
 
@@ -153,13 +154,14 @@
             let characters = ref({units:'', remaining:''})
             let senderids = reactive([])
             let form = useForm({
-                mobile: '254716202298',
+                mobile: '',
                 msg: '',
+                senderid: ''
             });
 
             onMounted(()=>{
-                let senderidurl = "https://portal.zettatel.com/SMSApi/senderid/read?userid=levzealot&password=Password2021&output=json"
-                axios.get(senderidurl)
+               let senderidurl = "https://portal.zettatel.com/SMSApi/senderid/read?userid="+process.env.MIX_TALK_USER_ID+"&password="+process.env.MIX_TALK_USER_PASSWORD+"&output=json"
+               axios.get(senderidurl)
                 .then(response => {
                     // console.log(response.data.response.senderidList);
                     let senderidsData = response.data.response.senderidList
@@ -178,7 +180,7 @@
             const checkCharacters = () => {
 
                 let encodedText = form.msg.replace(/\s/g, '+')
-                const url = "https://portal.zettatel.com/SMSApi/info/msg?userid=levzealot&password=Password2021&msg="+encodedText+"&output=json"
+                const url = "https://portal.zettatel.com/SMSApi/info/msg?userid="+process.env.MIX_TALK_USER_ID+"&password="+process.env.MIX_TALK_USER_PASSWORD+"&msg="+encodedText+"&output=json"
                 axios.get(url)
                 .then(response => {
                     characters.value.units = response.data.response.msgList.credit

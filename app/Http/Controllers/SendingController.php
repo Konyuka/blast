@@ -26,18 +26,22 @@ class SendingController extends Controller
         $sms = array(
             (object) [
                 'mobile' => array($request->mobile ),
-                'msg' => $request->msg
+                'msg' => $request->msg,
             ],
         );
         $data = (object)[
-            'userid' => 'levzealot',
-            'password' => 'Password2021',
-            'senderid' => 'LEVZEALOT',
+            'userid' => env('MIX_TALK_USER_ID',null),
+            'password' => env('MIX_TALK_USER_PASSWORD',null),
+            'senderid' => $request->senderid,
             'msgType' => 'text',
             'duplicatecheck' => 'true',
             'sendMethod' => 'quick',
             'sms' => $sms,
         ];
+        // return dd($data);
+
+        $userid = env('MIX_TALK_USER_ID',null);
+        $password = env('MIX_TALK_USER_PASSWORD',null);
 
         $curl = curl_init();
         curl_setopt_array($curl, array(
@@ -48,7 +52,7 @@ class SendingController extends Controller
         CURLOPT_TIMEOUT => 30,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "POST",
-        CURLOPT_POSTFIELDS => "userid=levzealot&password=Password2021&mobile=$request->mobile&msg=$request->msg&senderid=LEVZEALOT&msgType=text&duplicatecheck=true&output=json&sendMethod=quick",
+        CURLOPT_POSTFIELDS => "userid=$userid&password=$password&mobile=$request->mobile&msg=$request->msg&senderid=$request->senderid&msgType=text&duplicatecheck=true&output=json&sendMethod=quick",
         CURLOPT_HTTPHEADER => array(
             "apikey: somerandomuniquekey",
             "cache-control: no-cache",
@@ -69,6 +73,7 @@ class SendingController extends Controller
         }
 
         $sendingdId = json_decode($response, true);
+        // return dd($sendingdId);
         // $textID = $sendingdId->transactionId;
         $textID = $sendingdId['transactionId'];
 
