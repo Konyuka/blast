@@ -63,43 +63,43 @@ export default {
         }
     },
     methods: {
-        // sendtext(){
+        sendtext(){
 
-            // let payload = {
-                // "userid": "levzealot",
-                // "password" : "Password2021",
-                // "senderid": "LEVZEALOT",
-                // "msgType": "text",
-                // "duplicatecheck": "true",
-                // "sendMethod": "quick",
-                // "sms": [
-                //     {
-                //     "mobile": [this.number],
-                //     "msg": this.message
-                //     },
-                // ]
-            // }
+            let payload = {
+                "userid": "levzealot",
+                "password" : "Password2021",
+                "senderid": "LEVZEALOT",
+                "msgType": "text",
+                "duplicatecheck": "true",
+                "sendMethod": "quick",
+                "sms": [
+                    {
+                    "mobile": [this.number],
+                    "msg": this.message
+                    },
+                ]
+            }
 
-        //     this.$http
-        //     .post("/SMSApi/send ", payload, {
-        //       headers: {
-        //         "Content-Type": "application/json",
-        //         "Accept": "application/json",
-        //         // "Access-Control-Allow-Origin: *"
-        //         // "Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}"
-        //         // "Authorization": `Bearer ${localStorage.getItem('token')}`
-        //       },
-        //     })
-        //     .then((response) => {
-        //       if (response) {
-        //         console.log(response)
-        //       }
-        //     })
-        //     .catch(error => {
-        //       console.log(error)
-        //     })
+            this.$http
+            .post("/SMSApi/send ", payload, {
+              headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                // "Access-Control-Allow-Origin: *"
+                // "Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}"
+                // "Authorization": `Bearer ${localStorage.getItem('token')}`
+              },
+            })
+            .then((response) => {
+              if (response) {
+                console.log(response)
+              }
+            })
+            .catch(error => {
+              console.log(error)
+            })
 
-        // },
+        }
         // sendapp(){
 
         //     // const axios = require('axios')

@@ -11,3 +11,13 @@ i Compiling Mix
 [1mModule [1m[31mnot found[39m[22m[1m: [1m[31mError[39m[22m[1m: Can't resolve 'commit' in 'C:\xampp\htdocs\Blast\blast'[39m[22m
 
 webpack compiled with [1m[31m2 errors[39m[22m
+[Browsersync] Proxying: http://localhost
+[Browsersync] Access URLs:
+ -------------------------------------
+       Local: http://localhost:3000
+    External: http://172.17.112.1:3000
+ -------------------------------------
+          UI: http://localhost:3001
+ UI External: http://localhost:3001
+ -------------------------------------
+[Browsersync] Watching files...
