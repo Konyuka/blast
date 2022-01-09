@@ -12,6 +12,7 @@
   ```
 -->
 <div>
+
   <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
   <div class="fixed inset-0 flex z-40 md:hidden" role="dialog" aria-modal="true">
     <!--
@@ -112,6 +113,7 @@
           </a>
         </nav>
       </div>
+
       <div class="flex-shrink-0 flex border-t border-indigo-800 p-4">
         <a href="#" class="flex-shrink-0 group block">
           <div class="flex items-center">
@@ -129,6 +131,7 @@
           </div>
         </a>
       </div>
+
     </div>
 
     <div class="flex-shrink-0 w-14" aria-hidden="true">
@@ -142,7 +145,11 @@
     <div class="flex-1 flex flex-col min-h-0 bg-indigo-700">
       <div class="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
         <div class="flex items-center flex-shrink-0 px-4">
-          <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-logo-indigo-300-mark-white-text.svg" alt="Workflow">
+            <h1 class="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-4xl">
+            <span class="block xl:inline">Talk</span>
+            <span class="block xl:inline">Duka</span>
+            </h1>
+          <!-- <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-logo-indigo-300-mark-white-text.svg" alt="Workflow"> -->
         </div>
         <nav class="mt-5 flex-1 px-2 space-y-1">
             <Link :href="route('karibu')">
@@ -193,6 +200,7 @@
 
         </nav>
       </div>
+
       <div class="flex-shrink-0 flex border-t border-indigo-800 p-4">
         <a href="#" class="flex-shrink-0 w-full group block">
           <div class="flex items-center">
@@ -201,17 +209,20 @@
             </div>
             <div class="ml-3">
               <p class="text-sm font-medium text-white">
-                Tom Cook
+                <i class="fas fa-angle-double-up"></i> Manage Profile
               </p>
-              <p class="text-xs font-medium text-indigo-200 group-hover:text-white">
-                View profile
+
+              <p class="mt-2 text-md font-medium text-gray-400 italic group-hover:text-white">
+                <i class="fas fa-user"> </i> Logout...
               </p>
             </div>
           </div>
         </a>
       </div>
+
     </div>
   </div>
+
   <div class="md:pl-64 flex flex-col flex-1">
     <div class="sticky top-0 z-10 md:hidden pl-1 pt-1 sm:pl-3 sm:pt-3 bg-gray-100">
       <button type="button" class="-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
@@ -226,6 +237,7 @@
       <slot></slot>
     </main>
   </div>
+
 </div>
 
 
@@ -242,6 +254,8 @@
     import JetNavLink from '@/Jetstream/NavLink.vue'
     import JetResponsiveNavLink from '@/Jetstream/ResponsiveNavLink.vue'
     import { Head, Link } from '@inertiajs/inertia-vue3';
+
+    // import colors from 'tailwind-colors';
 
     export default defineComponent({
         props: {

@@ -15,3 +15,6 @@ if (mix.inProduction()) {
 if (!mix.inProduction()) {
     mix.browserSync(process.env.APP_URL);
 }
+
+mix.disableNotifications();
+

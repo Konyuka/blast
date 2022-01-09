@@ -1290,6 +1290,9 @@ select {
 .h-0 {
 	height: 0px;
 }
+.h-screen {
+	height: 100vh;
+}
 .min-h-screen {
 	min-height: 100vh;
 }
@@ -1852,6 +1855,9 @@ select {
 }
 .uppercase {
 	text-transform: uppercase;
+}
+.italic {
+	font-style: italic;
 }
 .leading-5 {
 	line-height: 1.25rem;
@@ -2697,6 +2703,11 @@ select {
 
 	.md\:pl-64 {
 		padding-left: 16rem;
+	}
+
+	.md\:text-4xl {
+		font-size: 2.25rem;
+		line-height: 2.5rem;
 	}
 
 	.md\:text-6xl {

@@ -29,6 +29,13 @@
         "vue-loader": "^16.1.2"
     },
     "dependencies": {
+        "@fortawesome/fontawesome-svg-core": "^1.2.36",
+        "@fortawesome/free-brands-svg-icons": "^5.15.4",
+        "@fortawesome/free-regular-svg-icons": "^5.15.4",
+        "@fortawesome/free-solid-svg-icons": "^5.15.4",
+        "@tailwindcss/aspect-ratio": "^0.4.0",
+        "tailwind-colors": "^1.1.0",
+        "vue-fontawesome": "^0.0.2",
         "vue-resource": "^1.5.3"
     }
 }
