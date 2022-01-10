@@ -1,7 +1,15 @@
 const mix = require('laravel-mix');
 
 
+
 mix.js('resources/js/app.js', 'public/js').vue()
+    .browserSync({
+        // proxy: 'localhost',
+        // host: 'localhost:3000'
+        proxy: 'http://whatever.test',
+        open: false,
+    })
+
     .postCss('resources/css/app.css', 'public/css', [
         require('postcss-import'),
         require('tailwindcss'),

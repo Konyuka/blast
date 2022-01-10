@@ -34,6 +34,7 @@
         "@fortawesome/free-regular-svg-icons": "^5.15.4",
         "@fortawesome/free-solid-svg-icons": "^5.15.4",
         "@tailwindcss/aspect-ratio": "^0.4.0",
+        "cors": "^2.8.5",
         "tailwind-colors": "^1.1.0",
         "vue-fontawesome": "^0.0.2",
         "vue-resource": "^1.5.3"

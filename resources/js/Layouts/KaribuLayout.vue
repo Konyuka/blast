@@ -153,47 +153,38 @@
         </div>
         <nav class="mt-5 flex-1 px-2 space-y-1">
             <Link :href="route('karibu')">
-          <a href="#" class="bg-indigo-800 text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md">
-            <!-- Heroicon name: outline/home -->
-            <svg class="mr-3 flex-shrink-0 h-6 w-6 text-indigo-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-            </svg>
-            Send Messages
+          <a href="#" :class="{'bg-indigo-800 ': route().current() == 'karibu', '': route().current() != 'karibu' }" class="text-white hover:bg-indigo-600 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+            <i class="fas fa-envelope-open-text mr-2 fa-lg"></i>
+            Text Signal
+
           </a>
             </Link>
 
           <a href="#" class="text-white hover:bg-indigo-600 hover:bg-opacity-75 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
-            <!-- Heroicon name: outline/users -->
-            <svg class="mr-3 flex-shrink-0 h-6 w-6 text-indigo-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-            </svg>
+            <i class="fas fa-calendar-week mr-2 fa-lg"></i>
             Text Reports
           </a>
 
           <a href="#" class="text-white hover:bg-indigo-600 hover:bg-opacity-75 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
-            <!-- Heroicon name: outline/folder -->
-            <svg class="mr-3 flex-shrink-0 h-6 w-6 text-indigo-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
-            </svg>
-            SMS Templates
+            <i class="fas fa-feather-alt mr-2 fa-lg"></i>
+            Text Templates
           </a>
 
           <Link :href="route('calls')">
-          <a  href="#" class="text-white hover:bg-indigo-600 hover:bg-opacity-75 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
-            <!-- Heroicon name: outline/calendar -->
-            <svg class="mr-3 flex-shrink-0 h-6 w-6 text-indigo-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-            Calls
+          <a  href="#" :class="{'bg-indigo-800 ': route().current() == 'calls', '': route().current() != 'calls' }" class="text-white hover:bg-indigo-600 hover:bg-opacity-75 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+            <i class="fas fa-phone-volume mr-2 fa-lg"></i>
+            VOIP Calls
           </a>
           </Link>
 
           <a href="#" class="text-white hover:bg-indigo-600 hover:bg-opacity-75 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
-            <!-- Heroicon name: outline/calendar -->
-            <svg class="mr-3 flex-shrink-0 h-6 w-6 text-indigo-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-            My Space
+            <i class="fas fa-window-restore mr-2 fa-lg"></i>
+            CRM Portal
+          </a>
+
+          <a href="#" class="text-white hover:bg-indigo-600 hover:bg-opacity-75 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+            <i class="fas fa-user-astronaut mr-2 fa-lg"></i>
+            My Hub
           </a>
 
 
@@ -205,15 +196,15 @@
         <a href="#" class="flex-shrink-0 w-full group block">
           <div class="flex items-center">
             <div>
-              <img class="inline-block h-9 w-9 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+              <!-- <img class="inline-block h-9 w-9 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt=""> -->
             </div>
             <div class="ml-3">
               <p class="text-sm font-medium text-white">
-                <i class="fas fa-angle-double-up"></i> Manage Profile
+                <i class="fas fa-user"></i> Manage Profile
               </p>
 
-              <p class="mt-2 text-md font-medium text-gray-400 italic group-hover:text-white">
-                <i class="fas fa-user"> </i> Logout...
+              <p @click="logout" class="mt-2 text-md font-medium text-gray-400 italic group-hover:text-white">
+                <i class="fas fa-sign-out-alt"> </i> Logout...
               </p>
             </div>
           </div>
@@ -276,8 +267,16 @@
         data() {
             return {
                 showingNavigationDropdown: false,
+                currentRoute:null,
             }
         },
+
+        setup() {
+            let current = route().current()
+            // currentRoute = current
+            console.log(current)
+        },
+
 
         methods: {
             // switchToTeam(team) {

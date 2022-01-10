@@ -2,7 +2,7 @@
     <karibu-layout title="Dashboard">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Dashboard
+                Send Text
             </h2>
         </template>
 
@@ -30,6 +30,7 @@
         },
         setup(props) {
             console.log(props)
+            console.log(route().current())
         }
     })
 </script>

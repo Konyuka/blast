@@ -16,6 +16,12 @@ import { dom } from "@fortawesome/fontawesome-svg-core";
 dom.watch();
 
 const Vue = window.vue;
+
+// axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded'
+axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+
+// const cors = require('cors')
+// app.use(cors({ origin: ['http://localhost:8000'], }))
 // Vue.http.headers.common['Access-Control-Allow-Origin'] = true,
 // Vue.http.headers.common['Access-Control-Allow-Origin'] = '*'
 // Vue.http.headers.common['Access-Control-Request-Method'] = '*';

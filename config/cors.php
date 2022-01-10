@@ -21,14 +21,26 @@ return [
 
     'allowed_origins' => ['*'],
 
+    'allow_origins' => [
+        'https://portal.zettatel.com',
+    ],
+
     'allowed_origins_patterns' => [],
 
     'allowed_headers' => ['*'],
 
-    'exposed_headers' => [],
+    // 'exposed_headers' => [],
+
+    'exposed_headers' => ['*'],
 
     'max_age' => 0,
 
     'supports_credentials' => false,
+
+    'allowed_origins' => ['your-frontend.domain'],
+    'paths' => [ '/path-you-are-requesting' ],
+    'allowed_methods' => [ 'GET' ],
+    'allowed_headers' => [ 'content-type,x-inertia,x-inertia-version,x-requested-with' ],
+    'exposed_headers' => ['x-inertia']
 
 ];

@@ -21,6 +21,7 @@
                                 <option>SMS</option>
                                 <option>Email</option>
                                 <option>Whatsapp</option>
+                                <option>Internal</option>
                             </select>
                             </div>
 
@@ -91,18 +92,25 @@
                             </div>
                             <p v-if="characters.remaining.length != 0" class="mt-2 text-sm text-gray-500 flex justify-between">
                                 <span><span class="text-red-600">{{characters.remaining}}</span> Characters left for one unit of text</span>
-                                <span>Message cost <span class="text-red-600">{{characters.units}} unit(s)</span></span>
+                                <span>Message cost <span class="text-green-600">{{characters.units}} unit(s)</span></span>
                             </p>
-                            </div>
 
-                            <div class="flex items-start">
-                                <div class="h-5 flex items-center">
+                            <div class="flex justify-between">
+                                <div class="h-5 flex items-center mt-2">
                                 <input id="comments" name="comments" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
-                                </div>
                                 <div class="ml-3 text-sm">
                                 <label for="comments" class="font-medium text-gray-700">Send WhatsApp</label>
                                 </div>
+                                </div>
+
+                                <a href="" class="mt-2 text-sm text-indigo-600">
+                                    Load an SMS Template
+                                </a>
+
                             </div>
+
+                            </div>
+
 
                         </div>
                         </div>
@@ -113,9 +121,9 @@
                         <button @click.prevent="sendLaravel"  class="bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                             Blast
                         </button>
-                        <button @click.prevent="sendWhatsapp"  class="bg-indigo-600 ml-2 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        <!-- <button @click.prevent="sendWhatsapp"  class="bg-indigo-600 ml-2 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                             WhatsApp
-                        </button>
+                        </button> -->
                         </div>
                     </div>
                     </div>
@@ -135,7 +143,7 @@
     import axios from 'axios';
     import VueResource from 'vue-resource';
 
-
+    axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 
 
     // import KaribuLayout from '@/Layouts/KaribuLayout.vue'
@@ -160,7 +168,11 @@
             });
 
             onMounted(()=>{
-               let senderidurl = "https://portal.zettatel.com/SMSApi/senderid/read?userid="+process.env.MIX_TALK_USER_ID+"&password="+process.env.MIX_TALK_USER_PASSWORD+"&output=json"
+//               let headers =  {
+//     "Access-Control-Allow-Origin": "*",
+//  }
+            axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+              let senderidurl = "https://portal.zettatel.com/SMSApi/senderid/read?userid="+process.env.MIX_TALK_USER_ID+"&password="+process.env.MIX_TALK_USER_PASSWORD+"&output=json"
                axios.get(senderidurl)
                 .then(response => {
                     // console.log(response.data.response.senderidList);
