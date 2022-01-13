@@ -39,6 +39,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/calls', function () {
     return Inertia::render('Calls');
 })->name('calls');
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/templates', function () {
+    return Inertia::render('Templates');
+})->name('templates');
+
 Route::middleware(['auth:sanctum', 'verified'])->post('/sending', [SendingController::class, 'index'])
     ->name('sending');
 

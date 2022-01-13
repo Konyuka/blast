@@ -165,10 +165,12 @@
             Text Reports
           </a>
 
-          <a href="#" class="text-white hover:bg-indigo-600 hover:bg-opacity-75 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+         <Link :href="route('templates')">
+          <a href="#" :class="{'bg-indigo-800 ': route().current() == 'templates', '': route().current() != 'templates' }" class="text-white hover:bg-indigo-600 hover:bg-opacity-75 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
             <i class="fas fa-feather-alt mr-2 fa-lg"></i>
             Text Templates
           </a>
+         </Link>
 
           <Link :href="route('calls')">
           <a  href="#" :class="{'bg-indigo-800 ': route().current() == 'calls', '': route().current() != 'calls' }" class="text-white hover:bg-indigo-600 hover:bg-opacity-75 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
@@ -224,7 +226,7 @@
         </svg>
       </button>
     </div>
-    <main class="flex-1">
+    <main class="py-10 px-5">
       <slot></slot>
     </main>
   </div>
